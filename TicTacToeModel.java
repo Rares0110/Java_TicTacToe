@@ -88,14 +88,20 @@ class TicTacToeModel {
             //System.out.println("Placed marker successfully");
             if (checkForWin() == true) {
                 System.out.println("Player: " + getCurrentPlayer() + " Wins!");
+                showDisplayBoard();
                 return true;
             }
             else {
+                if (isBoardFull() == true) {
+                    System.out.println("Game over. Board is full");
+                    showDisplayBoard();
+                    System.exit(0);
+                }
+            }
                 showDisplayBoard();
                 switchPlayer();
                 placeMarker();
                 return true;
-            }
         }
         else {
             System.out.println("That spot is already taken");
@@ -105,13 +111,13 @@ class TicTacToeModel {
     }
 
     private boolean checkRows() {
-        if (board[0][0] == board[1][0] && board[1][0] == board[2][0]) {
+        if (board[0][0] != '-' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) {
             return true;
         }
-        else if (board[0][1] == board[1][1] && board[1][1] == board[2][1]) {
+        else if (board[0][1] != '-' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) {
             return true;
         }
-        else if (board[0][2] == board[1][2] && board[1][2] == board[2][2]) {
+        else if (board[0][2] != '-' && board[0][2] == board[1][2] && board[1][2] == board[2][2]) {
             return true;
         }
         else {
@@ -120,13 +126,13 @@ class TicTacToeModel {
     }
 
     private boolean checkColumns() {
-        if (board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
+        if (board[0][0] != '-' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
             return true;
         }
-        else if (board[1][0] == board[1][1] && board[1][1] == board[1][2]) {
+        else if (board[1][0] != '-' && board[1][0] == board[1][1] && board[1][1] == board[1][2]) {
             return true;
         }
-        else if (board[2][0] == board[2][1] && board[2][1] == board[2][2]) {
+        else if (board[2][0] != '-' && board[2][0] == board[2][1] && board[2][1] == board[2][2]) {
             return true;
         }
         else {
@@ -135,10 +141,10 @@ class TicTacToeModel {
     }
 
     private boolean checkDiagonals() {
-        if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+        if (board[0][0] != '-' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
             return true;
         }
-        else if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+        else if (board[0][2] != '-' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
             return true;
         }
         else {
@@ -158,16 +164,7 @@ class TicTacToeModel {
                 }
             }
         }
-        if (checkForWin() == true) {
-            System.out.println("Player: " + getCurrentPlayer() + "Wins!");
-            resetBoard();
-            return true;
-        }
-        else {
-            System.out.println("Nobody has won");
-            resetBoard();
-            return true;
-        }
+        return true;
     }
 
 
