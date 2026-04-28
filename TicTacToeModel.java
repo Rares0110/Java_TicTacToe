@@ -1,22 +1,21 @@
-import java.util.Scanner;
-
-
 class TicTacToeModel {
     private char[][] board;
-    private char turn;
-    static Scanner scanner = new Scanner(System.in);
+    private char currentPlayer;
 
     public TicTacToeModel() {
         board = new char[3][3];
         initialiseBoard();
-        turn = 'X';
+        currentPlayer = 'X';
 
         //System.out.println("Constructor Ran");
     }
 
+    public char[][] getBoard() {
+        return board;
+    }
+
     private void initialiseBoard() {
         //System.out.println("Creating Board");
-
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 board[row][col] = '-';
@@ -24,88 +23,39 @@ class TicTacToeModel {
         }
     }
 
-    public void showDisplayBoard() {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                System.out.print(board[row][col] + " ");
-            }
-            System.out.println();
-        }
-    }
-
     public void switchPlayer() {
         getCurrentPlayer();
-        if (turn == 'X') {
-            turn = 'O';
+        if (currentPlayer == 'X') {
+            currentPlayer = 'O';
             System.out.println("Turn is now Player O");
         }
         else {
-            turn = 'X';
+            currentPlayer = 'X';
             System.out.println("Turn is now Player X");
         }
     }
 
     public void resetBoard() {
-        board = new char[3][3];
+        initialiseBoard();
     }
 
     public char getCurrentPlayer() {
         //System.out.println("Get currentPlayer worked");
-        return turn;
+        return currentPlayer;
         }
 
-    public int[] getMark() {
-        try {
-            System.out.println("Enter Row (0, 1 or 2): ");
-            int row = scanner.nextInt();
-
-            System.out.println("Enter Column (0, 1 or 2): ");
-            int col = scanner.nextInt();
-            
-            if (row >= 0 && row <= 2 && col >= 0 && col <= 2) {
-                return new int[] {row, col};
-            }
-            else {
-                System.out.println("Row and Column must be between 0 - 2");
-                return getMark();
-            }
-        } 
-        catch (NumberFormatException e) {
-            System.out.println("Input can only be a whole number");
-            scanner.nextLine();
-            return getMark();
-        }
+    public char getMark(int row, int col) {
+        return board[row][col];
     }
     
-    public boolean placeMarker() {
-        getCurrentPlayer();
-        int[] cords = getMark();
-        int row = cords[1];
-        int col = cords[0];
-
-        if (board[row][col] == '-') {
-            board[row][col] = turn;
+    public boolean placeMarker(int row, int col) {
+        if (getMark(col, row) == '-') {
+            board[col][row] = currentPlayer;
             //System.out.println("Placed marker successfully");
-            if (checkForWin() == true) {
-                System.out.println("Player: " + getCurrentPlayer() + " Wins!");
-                showDisplayBoard();
-                return true;
-            }
-            else {
-                if (isBoardFull() == true) {
-                    System.out.println("Game over. Board is full");
-                    showDisplayBoard();
-                    System.exit(0);
-                }
-            }
-                showDisplayBoard();
-                switchPlayer();
-                placeMarker();
-                return true;
+            return true;
         }
         else {
             System.out.println("That spot is already taken");
-            placeMarker();
             return false;
         }
     }
@@ -166,15 +116,4 @@ class TicTacToeModel {
         }
         return true;
     }
-
-
-    public static void main(String[] args) {
-        TicTacToeModel model = new TicTacToeModel();
-        System.out.println("WELCOME TO TIC TAC TOE!");
-
-        model.showDisplayBoard();
-        System.out.println("Player: " + model.getCurrentPlayer() + " goes first");
-        model.placeMarker();
-    }
 }
-
