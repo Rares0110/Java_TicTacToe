@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "."
+    ],
+    "java.project.referencedLibraries": [
+        "/Users/rares/Documents/Programming/Java/Java_TicTacToe/lib/junit-platform-console-standalone-6.1.0-RC1.jar"
+    ]
+}
