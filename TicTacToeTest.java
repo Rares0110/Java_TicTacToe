@@ -9,6 +9,7 @@ public class TicTacToeTest {
         testRowWins();
         testColWins();
         testDiagWins();
+        System.out.println("Everything has passed");
     }
     
     private void testRowWins() {
@@ -40,9 +41,8 @@ public class TicTacToeTest {
         assertTrue(model.checkForWin());
         System.out.println("Test Diagonals Was Successful");
     }
-
     public static void main(String[] args) {
         TicTacToeTest test = new TicTacToeTest();
         test.testAll();
     }
-}
+} 

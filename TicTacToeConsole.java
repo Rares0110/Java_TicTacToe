@@ -2,13 +2,18 @@ import java.util.Scanner;
 
 
 public class TicTacToeConsole {
-    TicTacToeModel model = new TicTacToeModel();
     static Scanner scanner = new Scanner(System.in);
-
-    private char[][] displayBoard = model.getBoard();
-    private char currPlayer = model.getCurrentPlayer();
+    private TicTacToeModel modelBoard;
+    private char[][] displayBoard;
+    private char currPlayer;
     private int userRow = 0;
     private int userCol = 0;
+
+    public TicTacToeConsole() {
+        this.modelBoard = new TicTacToeModel();
+        this.displayBoard = modelBoard.getBoard();
+        this.currPlayer = modelBoard.getCurrentPlayer();
+    }
 
     private void showDisplayBoard() {
         System.out.println("   0  1  2");
@@ -30,23 +35,28 @@ public class TicTacToeConsole {
             userCol = scanner.nextInt();
             
             if (userRow >= 0 && userRow <= 2 && userCol >= 0 && userCol <= 2) {
-                if (model.placeMarker(userRow, userCol) == false) {
+                if (modelBoard.placeMarker(userRow, userCol) == false) {
                     playTTT();
                 }
                 else {
-                    if (model.checkForWin() == true) {
+                    if (modelBoard.checkForWin() == true) {
+                        System.out.println();
                         System.out.println("GAME OVER, WINNER IS " + currPlayer);
+                        showDisplayBoard();
+                        System.out.println();
                         System.exit(0);
                     }
                     else {
-                        if (model.isBoardFull() == true) {
+                        if (modelBoard.isBoardFull() == true) {
+                            System.out.println();
                             System.out.println("GAME OVER, BOARD IS FULL");
                             showDisplayBoard();
+                            System.out.println();
                             System.exit(0);
                         }
                         else {
                             showDisplayBoard();
-                            model.switchPlayer();
+                            modelBoard.switchPlayer();
                             playTTT();
                         }
                     }
@@ -67,6 +77,8 @@ public class TicTacToeConsole {
         TicTacToeConsole play = new TicTacToeConsole();
         System.out.println();
         System.out.println("WELCOME TO TIC TAC TOE!");
+        System.out.println();
+        System.out.println("    Board:   ");
         play.showDisplayBoard();
         System.out.println("Player: " + play.currPlayer + " goes first");
         play.playTTT();
