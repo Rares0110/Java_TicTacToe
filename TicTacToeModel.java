@@ -27,11 +27,11 @@ class TicTacToeModel {
         getCurrentPlayer();
         if (currentPlayer == 'X') {
             currentPlayer = 'O';
-            System.out.println("Turn is now Player O");
+            //System.out.println("Turn is now Player O");
         }
         else {
             currentPlayer = 'X';
-            System.out.println("Turn is now Player X");
+            //System.out.println("Turn is now Player X");
         }
     }
 

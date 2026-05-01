@@ -57,6 +57,7 @@ public class TicTacToeConsole {
                         else {
                             showDisplayBoard();
                             modelBoard.switchPlayer();
+                            System.out.println("Turn is now Player " + modelBoard.getCurrentPlayer());
                             playTTT();
                         }
                     }
@@ -74,13 +75,13 @@ public class TicTacToeConsole {
         }
     }
     public static void main(String[] args) {
-        TicTacToeConsole play = new TicTacToeConsole();
+        TicTacToeConsole cons = new TicTacToeConsole();
         System.out.println();
         System.out.println("WELCOME TO TIC TAC TOE!");
         System.out.println();
         System.out.println("    Board:   ");
-        play.showDisplayBoard();
-        System.out.println("Player: " + play.currPlayer + " goes first");
-        play.playTTT();
+        cons.showDisplayBoard();
+        System.out.println("Player: " + cons.currPlayer + " goes first");
+        cons.playTTT();
     }
 }

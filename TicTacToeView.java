@@ -11,7 +11,7 @@ public class TicTacToeView {
         page = new JFrame("TIC TAC TOE");
         button = new JButton[3][3];
 
-        statusLabel = new JLabel("Player X's Turn", SwingConstants.CENTER);
+        statusLabel = new JLabel("PLAYER X's TURN", SwingConstants.CENTER);
         statusLabel.setForeground(Color.WHITE);
 
         page.setLayout(new BorderLayout());
@@ -45,9 +45,5 @@ public class TicTacToeView {
 
     public void setStatus(String text) {
         statusLabel.setText(text);
-    }
-
-    public static void main(String[] args) {
-        new TicTacToeView();
     }
 }
