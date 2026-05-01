@@ -29,10 +29,10 @@ public class TicTacToeConsole {
 
     private void playTTT() {
         try {
-            System.out.println("Enter Row (0, 1 or 2): ");
+            System.out.print("Enter Row (0, 1 or 2): ");
             userRow = scanner.nextInt();
 
-            System.out.println("Enter Column (0, 1 or 2): ");
+            System.out.print("Enter Column (0, 1 or 2): ");
             userCol = scanner.nextInt();
             
             if (userRow >= 0 && userRow <= 2 && userCol >= 0 && userCol <= 2) {
@@ -57,6 +57,7 @@ public class TicTacToeConsole {
                         }
                         else {
                             showDisplayBoard();
+                            System.out.println();
                             modelBoard.switchPlayer();
                             System.out.println("Turn is now Player " + modelBoard.getCurrentPlayer());
                             playTTT();
@@ -79,7 +80,6 @@ public class TicTacToeConsole {
         TicTacToeConsole cons = new TicTacToeConsole();
         System.out.println();
         System.out.println("WELCOME TO TIC TAC TOE!");
-        System.out.println();
         System.out.println("    Board:   ");
         cons.showDisplayBoard();
         System.out.println("Player: " + cons.currPlayer + " goes first");
