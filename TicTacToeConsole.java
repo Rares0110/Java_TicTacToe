@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 
 public class TicTacToeConsole {
@@ -10,9 +11,9 @@ public class TicTacToeConsole {
     private int userCol = 0;
 
     public TicTacToeConsole() {
-        this.modelBoard = new TicTacToeModel();
-        this.displayBoard = modelBoard.getBoard();
-        this.currPlayer = modelBoard.getCurrentPlayer();
+        modelBoard = new TicTacToeModel();
+        displayBoard = modelBoard.getBoard();
+        currPlayer = modelBoard.getCurrentPlayer();
     }
 
     private void showDisplayBoard() {
@@ -68,7 +69,7 @@ public class TicTacToeConsole {
                 playTTT();
             }
         } 
-        catch (NumberFormatException e) {
+        catch (InputMismatchException e) {
             System.out.println("Input can only be a whole number");
             scanner.nextLine();
             playTTT();

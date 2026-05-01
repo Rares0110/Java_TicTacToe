@@ -4,8 +4,8 @@ class TicTacToeModel {
 
     public TicTacToeModel() {
         board = new char[3][3];
-        initialiseBoard();
         currentPlayer = 'X';
+        initialiseBoard();
 
         //System.out.println("Constructor Ran");
     }

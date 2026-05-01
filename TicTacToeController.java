@@ -1,6 +1,5 @@
 import javax.swing.*;  
 import java.awt.event.*;
-import java.awt.Color;
 
 
 public class TicTacToeController {
@@ -9,9 +8,9 @@ public class TicTacToeController {
     private JButton[][] buttons;
 
     public TicTacToeController() {
-        this.view = new TicTacToeView();
-        this.model = new TicTacToeModel();
-        this.buttons = view.getButtons();
+        view = new TicTacToeView();
+        model = new TicTacToeModel();
+        buttons = view.getButtons();
         hookUpListeners();
     }
 
@@ -35,7 +34,6 @@ public class TicTacToeController {
                             } 
                             else {
                             buttons[r][c].setText(String.valueOf(model.getCurrentPlayer()));
-                            buttons[r][c].setForeground(Color.WHITE);
                             model.switchPlayer();
                             view.setStatus("PLAYER " + model.getCurrentPlayer() + "'s TURN");
                             }
